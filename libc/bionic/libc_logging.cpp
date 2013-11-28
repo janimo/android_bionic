@@ -420,7 +420,7 @@ int __libc_format_fd(int fd, const char* format, ...) {
 }
 
 static int __libc_write_log(int priority, const char* tag, const char* msg) {
-  int main_log_fd = TEMP_FAILURE_RETRY(open("/dev/log/main", O_CLOEXEC | O_WRONLY));
+  int main_log_fd = TEMP_FAILURE_RETRY(open("/dev/alog/main", O_CLOEXEC | O_WRONLY));
   if (main_log_fd == -1) {
     return -1;
   }
@@ -462,7 +462,7 @@ static int __libc_android_log_event(int32_t tag, char type, const void* payload,
   vec[2].iov_base = const_cast<void*>(payload);
   vec[2].iov_len = len;
 
-  int event_log_fd = TEMP_FAILURE_RETRY(open("/dev/log/events", O_CLOEXEC | O_WRONLY));
+  int event_log_fd = TEMP_FAILURE_RETRY(open("/dev/alog/events", O_CLOEXEC | O_WRONLY));
   if (event_log_fd == -1) {
     return -1;
   }
