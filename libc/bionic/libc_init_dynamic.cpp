@@ -80,7 +80,7 @@ __attribute__((constructor)) static void __libc_preinit() {
   malloc_debug_init();
 }
 
-__LIBC_HIDDEN__ void __libc_postfini() {
+void __libc_postfini() {
   // A hook for the debug malloc library to let it know that we're shutting down.
   malloc_debug_fini();
 }

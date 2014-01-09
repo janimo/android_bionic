@@ -32,7 +32,9 @@
 // C/C++ code should just assign 'errno' instead.
 
 // TODO: this should be __LIBC_HIDDEN__ but was exposed in <errno.h> in the NDK.
+#ifdef LIBC_STATIC
 extern "C" int __set_errno(int n) {
   errno = n;
   return -1;
 }
+#endif
