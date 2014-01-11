@@ -466,6 +466,12 @@ int __system_property_read(const prop_info *pi, char *name, char *value)
 
 int __system_property_get(const char *name, char *value)
 {
+    /* In case we're called from Ubuntu */
+    if (__system_property_area__ == NULL) {
+        value[0] = 0;
+        return 0;
+    }
+
     const prop_info *pi = __system_property_find(name);
 
     if(pi != 0) {
